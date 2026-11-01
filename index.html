@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: https:; connect-src 'self' https://api.novaposhta.ua https://www.ukrposhta.ua https://tracking.ukrposhta.ua https://api.meest.com https://tracking.meest.net; base-uri 'none'; form-action 'none'; frame-src 'none'">
+  <title>Postomat</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="icon" href="assets/icon-192.png">
+</head>
+<body>
+  <div class="window-bar">
+    <span>Postomat</span>
+    <div>
+      <button id="minimize" aria-label="Згорнути" title="Згорнути">−</button>
+      <button id="hide" aria-label="Сховати" title="Сховати">×</button>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="brand-icon" data-icon="box"></div>
+    <div class="brand">
+      <strong>Postomat</strong>
+      <small>НОВА ПОШТА · УКРПОШТА · MEEST</small>
+    </div>
+    <button id="theme-toggle" class="icon-button" aria-label="Перемкнути тему" title="Світла / темна тема" data-icon="theme"></button>
+    <button id="pin" class="icon-button" aria-label="Закріпити поверх вікон" title="Закріпити поверх вікон" data-icon="pin"></button>
+    <button id="settings" class="icon-button" aria-label="Налаштування" title="Налаштування" data-icon="settings"></button>
+  </header>
+
+  <div id="demo-banner" class="demo-banner" hidden>ДЕМО · ВИГАДАНІ ДАНІ</div>
+
+  <main id="content" aria-live="polite"></main>
+
+  <footer>
+    <span id="connection-dot" class="dot"></span>
+    <span id="last-refresh">Готовий до підключення</span>
+    <button id="refresh" class="icon-button" aria-label="Оновити" title="Оновити" data-icon="refresh"></button>
+  </footer>
+
+  <!-- Додати посилку -->
+  <dialog id="add-dialog" aria-labelledby="add-title">
+    <form id="add-form">
+      <h2 id="add-title">Додати посилку</h2>
+      <label for="parcel-direction">Напрямок</label>
+      <select id="parcel-direction">
+        <option value="incoming">Отримання</option>
+        <option value="outgoing">Відправлення</option>
+      </select>
+      <label for="tracking-number">Номер ТТН</label>
+      <input id="tracking-number" type="text" inputmode="text" autocomplete="off" maxlength="30" placeholder="Наприклад 20450000000001 або RA123456789UA" required>
+      <label for="parcel-title">Назва <span class="muted">· необов'язково</span></label>
+      <input id="parcel-title" type="text" maxlength="200" placeholder="Наприклад, «Книжки»">
+      <p id="add-error" class="error" role="alert" hidden></p>
+      <div class="dialog-actions">
+        <button type="button" class="secondary-button" data-close="add-dialog">Скасувати</button>
+        <button id="add-submit" type="submit" class="primary-button">Відстежувати</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Налаштування -->
+  <dialog id="settings-dialog" aria-labelledby="settings-title">
+    <div class="dialog-heading">
+      <h2 id="settings-title">Налаштування</h2>
+      <button class="text-button" data-close="settings-dialog">Готово</button>
+    </div>
+
+    <p id="account-label" class="account-label"></p>
+    <div class="account-actions">
+      <button id="account-open" class="secondary-button">Відкрити акаунт</button>
+      <button id="account-signout" class="text-button danger">Вийти</button>
+    </div>
+    <p class="hint">Вихід прибере сесію та список посилок з цього пристрою. Дані у перевізника залишаться.</p>
+    <hr>
+
+    <label class="toggle-row"><span>Поверх інших вікон</span><input id="setting-pin" type="checkbox" role="switch"></label>
+    <label class="toggle-row"><span>Темна тема</span><input id="setting-theme" type="checkbox" role="switch"></label>
+    <label class="toggle-row"><span>Запускати разом із системою</span><input id="setting-autostart" type="checkbox" role="switch"></label>
+
+    <div class="carrier-selector">
+      <button class="carrier-chip active" data-carrier="novaposhta">
+        <span>Нова пошта</span>
+      </button>
+      <button class="carrier-chip" data-carrier="ukrposhta">
+        <span>Укрпошта</span>
+      </button>
+      <button class="carrier-chip" data-carrier="meest">
+        <span>Meest</span>
+      </button>
+    </div>
+
+    <label class="toggle-row"><span>Сповіщення про зміни</span><input id="setting-notifications" type="checkbox" role="switch"></label>
+    <button id="notification-test" class="secondary-button">Тестове сповіщення</button>
+    <p id="notification-result" class="hint" role="status"></p>
+
+    <p class="hint">Перевіряємо зміни кожні 5 хвилин, поки пристрій не засне. Картка посилки сам відкриється, коли посилка прибуде у відділення або поштомат.</p>
+    <p class="hint">Експериментальна версія. Підключення акаунту залежить від вебкабінету перевізника.</p>
+
+    <div class="settings-bottom">
+      <span id="version">Postomat 1.0.0</span>
+      <button id="quit" class="text-button">Завершити роботу</button>
+    </div>
+  </dialog>
+
+  <div id="toast" role="status" hidden></div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

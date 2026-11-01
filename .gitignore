@@ -1,9 +1,7 @@
-.DS_Store
-.build/
-dist/
-*.app/
-*.log
-.env
-.env.*
-parcels.json
 node_modules/
+dist/
+dist-electron/
+.env
+*.log
+.DS_Store
+.turbo

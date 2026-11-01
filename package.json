@@ -1,0 +1,21 @@
+{
+  "name": "postomat",
+  "productName": "Postomat",
+  "version": "1.0.0",
+  "description": "Трекер посилок для Нова пошти, Укрпошти та Meest з темною темою",
+  "type": "module",
+  "main": "electron/main.js",
+  "scripts": {
+    "start": "electron electron/main.js",
+    "dev": "electron electron/main.js",
+    "build": "electron-builder",
+    "test": "node test/runner.cjs"
+  },
+  "keywords": ["tracking", "novaposhta", "ukrposhta", "meest", "parcels"],
+  "author": "Postomat",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.0.0"
+  }
+}
