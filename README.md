@@ -1,4 +1,4 @@
-# Postomat
+# Postomat - вдосконалення [Nova Parcel](https://github.com/FakerFox/nova-parcel)
 
 Трекер посилок для **Нової пошти**, **Укрпошти** та **Meest** з темною темою, сповіщеннями та кращим UI.
 
